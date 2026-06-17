@@ -74,7 +74,7 @@ img{display:block;max-width:100%}
 /* photo */
 .photo-wrap{position:relative;width:min(300px,86vw);margin-inline:auto}
 .photo-wrap::before{content:"";position:absolute;inset:0;transform:translate(16px,16px);border:1.5px solid var(--accent);border-radius:var(--r-lg);z-index:0}
-.photo{position:relative;z-index:1;aspect-ratio:4/4.7;width:100%;object-fit:cover;object-position:50% 12%;border-radius:var(--r-lg);border:1px solid var(--line-strong);box-shadow:0 26px 50px -28px rgba(20,22,27,.5)}
+.photo{position:relative;z-index:1;aspect-ratio:4/5;width:100%;object-fit:cover;object-position:50% 12%;border-radius:var(--r-lg);border:1px solid var(--line-strong);box-shadow:0 26px 50px -28px rgba(20,22,27,.5)}
 .photo-cap{position:absolute;z-index:2;left:14px;bottom:14px;font-family:"JetBrains Mono",monospace;font-size:.72rem;color:#fff;background:rgba(20,22,27,.62);backdrop-filter:blur(6px);padding:5px 11px;border-radius:100px}
 
 /* ---------- focus band (dark) ---------- */
