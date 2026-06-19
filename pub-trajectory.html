@@ -48,61 +48,9 @@
   <p class="body">Predicting where a pedestrian will move next is one of the hardest and most safety-critical problems in autonomous driving. Most models lean heavily on a pedestrian’s own motion history — but a person’s path is shaped just as much by the scene around them: sidewalks, crossings, obstacles, and other road users.</p>
   <p class="body">This work takes a <b>scene-aware</b> approach. It brings together three complementary sources of information: pre-extracted <b>visual features</b> describing what the scene looks like, <b>semantic maps</b> that encode its layout, and numerical <b>motion data</b> such as past positions and velocities. These signals are fused and modeled with a <b>Sparse Graph Convolutional Network</b>, which captures the relevant interactions efficiently instead of treating every connection as equally important. The result grounds each prediction in the surrounding environment, not just past movement.</p>
 
-  <!-- To use the REAL figure from your paper instead of this schematic:
-       1) save your figure as  fig-trajectory.png  next to this file,
-       2) replace the whole <figure>…</figure> block below with:
-          <figure class="fig"><img src="fig-trajectory.png" alt="Proposed architecture"><figcaption>Proposed architecture.</figcaption></figure> -->
   <figure class="fig reveal">
-    <svg viewBox="0 0 900 360" role="img" aria-label="Architecture overview: visual features, a semantic map and motion data are fused and passed to a Sparse Graph Convolutional Network that predicts the future trajectory">
-      <defs>
-        <marker id="ah2" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path class="d-arrow" d="M0 0 L9 4.5 L0 9 Z"/></marker>
-        <linearGradient id="tg" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#1B3BFF"/><stop offset="1" stop-color="#10B6C9"/></linearGradient>
-      </defs>
-
-      <!-- inputs -->
-      <rect class="d-in" x="20" y="41" width="180" height="58" rx="12"/>
-      <text class="d-t" x="110" y="66" text-anchor="middle">Visual features</text>
-      <text class="d-t-sm" x="110" y="84" text-anchor="middle">scene appearance</text>
-
-      <rect class="d-in" x="20" y="131" width="180" height="58" rx="12"/>
-      <text class="d-t" x="110" y="156" text-anchor="middle">Semantic map</text>
-      <text class="d-t-sm" x="110" y="174" text-anchor="middle">scene layout</text>
-
-      <rect class="d-in" x="20" y="221" width="180" height="58" rx="12"/>
-      <text class="d-t" x="110" y="246" text-anchor="middle">Motion data</text>
-      <text class="d-t-sm" x="110" y="264" text-anchor="middle">past x, y, velocity</text>
-
-      <!-- fusion -->
-      <rect class="d-box" x="260" y="120" width="150" height="80" rx="14"/>
-      <text class="d-t" x="335" y="155" text-anchor="middle">Multimodal</text>
-      <text class="d-t" x="335" y="175" text-anchor="middle">feature fusion</text>
-
-      <!-- core -->
-      <rect class="d-core" x="470" y="110" width="200" height="100" rx="16"/>
-      <text class="d-t-w" x="570" y="152" text-anchor="middle" font-size="15">Sparse Graph</text>
-      <text class="d-t-w" x="570" y="174" text-anchor="middle" font-size="15">Convolutional Net</text>
-
-      <!-- output -->
-      <rect class="d-out" x="720" y="112" width="160" height="96" rx="14"/>
-      <text class="d-t" x="800" y="140" text-anchor="middle">Predicted</text>
-      <text class="d-t-sm" x="800" y="158" text-anchor="middle">future trajectory</text>
-
-      <!-- arrows: inputs -> fusion -->
-      <path class="d-line" d="M200 70 C 232 70, 232 130, 256 142" marker-end="url(#ah2)"/>
-      <path class="d-line" d="M200 160 H256" marker-end="url(#ah2)"/>
-      <path class="d-line" d="M200 250 C 232 250, 232 190, 256 178" marker-end="url(#ah2)"/>
-      <!-- fusion -> core -->
-      <path class="d-line" d="M410 160 H464" marker-end="url(#ah2)"/>
-      <!-- core -> output -->
-      <path class="d-line" d="M670 160 H714" marker-end="url(#ah2)"/>
-
-      <!-- trajectory fan inside output (below the label) -->
-      <circle cx="744" cy="184" r="3.2" fill="#0C7E8C"/>
-      <path d="M744 184 C 786 182, 820 176, 864 173" fill="none" stroke="url(#tg)" stroke-width="1.6" stroke-dasharray="4 4"/>
-      <path d="M744 184 C 786 184, 820 184, 864 185" fill="none" stroke="url(#tg)" stroke-width="1.6" stroke-dasharray="4 4"/>
-      <path d="M744 184 C 786 186, 820 192, 864 197" fill="none" stroke="url(#tg)" stroke-width="1.6" stroke-dasharray="4 4"/>
-    </svg>
-    <figcaption><b>Architecture overview.</b> Three modalities are fused and modeled with a Sparse GCN to forecast the pedestrian’s future path.</figcaption>
+    <img src="fig-trajectory.png" alt="Architecture: a Feature Extraction Module (ResNet-18 scene vectors plus super-resolution and One-Former semantic maps) feeds a Cross-Attention Module; an Interaction Module builds sparse directed spatial and temporal graphs; the fused features pass through a TCN to predict the future trajectory.">
+    <figcaption><b>Architecture overview.</b> Scene features and sparse spatial–temporal interaction graphs are fused, then decoded by a TCN to forecast the pedestrian’s future path.</figcaption>
   </figure>
 
   <h2 class="art-h">Key contributions</h2>
